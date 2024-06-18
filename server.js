@@ -131,7 +131,7 @@ app.post("/api/processo/search", (req, res) => {
   const dataIni = req.body.dataIni / 1000
   const dataFim = req.body.dataFim / 1000
 
-  Pirometro.find({
+  Teste.find({
     'dados.local': 1,
     'dados.timestamp': { $gte: dataIni, $lte: dataFim },
     'dados.processo': req.body.processo
