@@ -1,0 +1,38 @@
+{
+  "name": "js-jwt-auth-mongodb",
+  "version": "1.0.0",
+  "description": "Node.js + MongoDB: JWT Authentication & Authorization",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "load": "nodemon server.js"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "mongodb"
+  ],
+  "author": "AVBDev",
+  "license": "ISC", 
+  "dependencies": {
+    "@types/multer": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "nodemon": "^3.0.3",
+    "multer": "^1.4.5-lts.1",
+    "mongoose": "^5.12.11",
+    "express-basic-auth": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bezkoder/node-js-jwt-auth-mongodb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bezkoder/node-js-jwt-auth-mongodb/issues"
+  },
+  "homepage": "https://github.com/bezkoder/node-js-jwt-auth-mongodb#readme",
+  "devDependencies": {}
+}

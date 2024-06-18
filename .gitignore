@@ -1,0 +1,6 @@
+# files to ignore
+
+.env
+yarn.lock
+tmp
+node_modules
