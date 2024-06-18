@@ -62,32 +62,27 @@ app.post("/api/processo", basicAuth({
     let timestamp = new Date().toLocaleString('pt-BR', {timeZone: 'America/Belem'})
     try {
       let count = 0
-      if (typeof(req.body[0]) === "object") {
-        try {
-          req.body.filter(async item => {
-            const teste = new Teste({
-              timestamp: timestamp,
-              dados: item,
-            })
-            await teste.save((err, test) => {
-              if (err) {
-                console.log("Erro ao salvar documento em Teste")
-                res.status(500).json('erro no tratamento dos dados');
-                return;
-              } else {
-                console.log("Data saved in Mongo collection array ", timestamp)
-              }
-            })
-            count = count + 1
+      try {
+        req.body.filter(async item => {
+          const teste = new Teste({
+            timestamp: timestamp,
+            dados: item,
           })
-          res.status(200).json(`u${req.body[count]?.ubc} f${req.body[count]?.forno} OK`)
-        } catch (error){
-          res.status(500).json('erro no tratamento dos dados');
-          console.log("erro nos registros do processo", error, timestamp)
-        }
-      } else {
-        console.log("Dado recebido não é do tipo object", timestamp)
-        res.status(422).send("Erro nos registros")
+          await teste.save((err, test) => {
+            if (err) {
+              console.log("Erro ao salvar documento em Teste")
+              res.status(500).json('erro no tratamento dos dados');
+              return;
+            } else {
+              console.log("Data saved in Mongo collection array ", timestamp)
+            }
+          })
+          count = count + 1
+        })
+        res.status(200).json(`Registro do processo salvo`)
+      } catch (error){
+        res.status(500).json('erro no tratamento dos dados');
+        console.log("erro nos registros do processo", error, timestamp)
       }
     } catch (error){
       console.log("Erro no código da rota api/processo!!! ", error, timestamp)
@@ -133,8 +128,7 @@ app.post("/api/processo/search", (req, res) => {
 
   Teste.find({
     'dados.local': 1,
-    'dados.timestamp': { $gte: dataIni, $lte: dataFim },
-    'dados.processo': req.body.processo
+    'dados.timestamp': { $gte: dataIni, $lte: dataFim }
   }).sort({_id: -1}).exec((err, processo) => {
     if (err) {
       res.status(500).send({ message: "Erro ao buscar dados" });
